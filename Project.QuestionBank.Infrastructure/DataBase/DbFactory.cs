@@ -52,7 +52,7 @@ namespace Project.QuestionBank.Infrastructure.DataBase
                 ConnectionString = connectionSting,
                 DbType = DbType,
                 IsAutoCloseConnection = true,
-                IsShardSameThread = true,
+                IsShardSameThread = true,//设为true相同线程是同一个SqlConnection
                 InitKeyType = InitKeyType.SystemTable,
                 ConfigureExternalServices = new ConfigureExternalServices()
                 {

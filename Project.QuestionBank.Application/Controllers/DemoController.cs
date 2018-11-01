@@ -40,6 +40,12 @@ namespace Project.QuestionBank.Application.Controllers
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
+        public async Task<ActionResult> Test4(int page,int size)
+        {
+            var res = await _sysUserService.GetUserPageList(page, size);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
 
         [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> AddUser([FromBody]SysUser user)

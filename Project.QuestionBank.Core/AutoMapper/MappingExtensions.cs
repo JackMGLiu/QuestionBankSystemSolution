@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Project.QuestionBank.Core.Domain;
+using Project.QuestionBank.Core.ViewModel.SysRole;
 using Project.QuestionBank.Core.ViewModel.SysUser;
 
 namespace Project.QuestionBank.Core.AutoMapper
@@ -35,6 +36,20 @@ namespace Project.QuestionBank.Core.AutoMapper
         public static SysUser ToEntity(this SysUserViewModel model)
         {
             return model.MapTo<SysUserViewModel, SysUser>();
+        }
+
+        #endregion
+
+        #region SysRole
+
+        public static SysRoleViewModel ToModel(this SysRole entity)
+        {
+            return entity.MapTo<SysRole, SysRoleViewModel>();
+        }
+
+        public static SysRole ToEntity(this SysRoleViewModel model)
+        {
+            return model.MapTo<SysRoleViewModel, SysRole>();
         }
 
         #endregion
