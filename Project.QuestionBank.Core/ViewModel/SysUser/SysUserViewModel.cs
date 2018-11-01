@@ -52,8 +52,13 @@ namespace Project.QuestionBank.Core.ViewModel.SysUser
         public string Remark { get; set; }
 
         /// <summary>
-        /// 角色
+        /// 角色编号
         /// </summary>
-        public SysRoleViewModel RoleViewModel { get; set; }
+        public int RoleId { get; set; }
+
+        /// <summary>
+        /// 角色名称
+        /// </summary>
+        public string RoleName { get; set; }
     }
 }

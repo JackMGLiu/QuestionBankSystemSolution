@@ -42,7 +42,7 @@
                         { field: 'UserId', width: 80, title: 'ID', sort: false },
                         { field: 'UserName', width: 120, title: '用户名' },
                         { field: 'RealName', width: 120, title: '姓名', sort: false },
-                        { field: 'RoleName', width: 100, title: '当前角色' },
+                        { field: 'RoleName', width: 100, title: '当前角色', templet: '#role' },
                         { field: 'Age', width: 80, title: '年龄' },
                         { field: 'Email', title: '电子邮箱', minWidth: 150 },
                         //{ field: 'CreateTime', title: '添加时间', minWidth: 150, templet: '#createTime' },
@@ -83,6 +83,15 @@
             date.setTime(d.CreateTime);
             return date.Format("yyyy-MM-dd hh:mm:ss");
 
+        }}
+    </script>
+    <script id="role" type="text/html">
+        {{#
+            if(d.RoleName==null || d.RoleName==''){
+                return '<span style="color:blue;">暂无</span>';
+            }else{
+                return d.RoleName;
+            }
         }}
     </script>
 </body>

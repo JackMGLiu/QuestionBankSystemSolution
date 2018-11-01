@@ -18,8 +18,8 @@ namespace Project.QuestionBank.Core.AutoMapper
 
                 //将领域实体映射到视图实体
                 cfg.CreateMap<SysUser, SysUserViewModel>()
-                    .ForMember(v => v.UserId, v => v.MapFrom(s => s.Id))
-                    .ForMember(v => v.RoleViewModel, v => v.MapFrom(s => s.Role));
+                    .ForMember(v => v.UserId, v => v.MapFrom(s => s.Id));
+                    //.ForMember(v => v.SysRoleViewModel, v => v.MapFrom(s => s.Role));
 
                 //将视图实体映射到领域实体
                 cfg.CreateMap<SysUserViewModel, SysUser>();

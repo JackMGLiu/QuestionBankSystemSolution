@@ -60,10 +60,6 @@ namespace Project.QuestionBank.Core.Domain
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; }
-
-
-        [SugarColumn(IsIgnore = true)]
-        public SysRole Role { get; set; }
+        public int? RoleId { get; set; }
     }
 }

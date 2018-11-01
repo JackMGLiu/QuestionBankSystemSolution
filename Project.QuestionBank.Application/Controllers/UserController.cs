@@ -32,14 +32,17 @@ namespace Project.QuestionBank.Application.Controllers
         [Route("/users")]
         public async Task<ActionResult> Users(int page, int size)
         {
-            var data = await _sysUserService.QueryPageAndCountBySql("", page, size, "id desc");
-            //var all = await _sysUserService.Query("", "id desc");
-            var users = data.Item1.MapTo<List<SysUser>, List<SysUserViewModel>>();
+            //var data = await _sysUserService.QueryPageAndCountBySql("", page, size, "id desc");
+            var all = await _sysUserService.Query("", "id desc");
+            //var users = data.Item1.MapTo<List<SysUser>, List<SysUserViewModel>>();
+            var users = await _sysUserService.GetUserPageList(page, size);
+
             var res = new PageViewModel
             {
                 code = "",
                 msg = "",
-                count = data.Item2,
+                //count = data.Item2,
+                count = all.Count,
                 data = users
             };
             return Json(res, JsonRequestBehavior.AllowGet);

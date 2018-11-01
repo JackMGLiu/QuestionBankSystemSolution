@@ -37,19 +37,21 @@ namespace Project.QuestionBank.Core.Service.Impl
             var data = await Task.Run(() => _dal.CurrentDb.Queryable<SysUser, SysRole>((u, r) => new object[]
             {
                 JoinType.Left, u.RoleId == r.Id
-            }).Select((u, r) => new SysUserViewModel
-            {
-                UserId = u.Id,
-                UserName = u.UserName,
-                //RealName = u.RealName,
-                //Age = u.Age,
-                //Email = u.Email,
-                //Remark = u.Remark,               
-                RoleViewModel = new SysRoleViewModel
+            })
+                .Where(u => true)
+                .OrderBy("u.Id desc")
+                .Select((u, r) => new SysUserViewModel
                 {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    RealName = u.RealName,
+                    Age = u.Age,
+                    Email = u.Email,
+                    Remark = u.Remark,
+                    RoleId = u.RoleId.Value,
                     RoleName = r.RoleName
-                }
-            }).ToPageList(page, size)); 
+                }).ToPageList(page, size));
+
             return data;
         }
     }

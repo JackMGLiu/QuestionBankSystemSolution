@@ -13,6 +13,6 @@ namespace Project.QuestionBank.Infrastructure.DataBase
         /// </summary>
         public static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["QuestionBankDb"].ConnectionString;
 
-        //public static string ConnectionStringDev { get; } = ConfigurationManager.ConnectionStrings["QuestionBankDb1"].ConnectionString;
+        public static string ConnectionStringDev { get; } = ConfigurationManager.ConnectionStrings["QuestionBankDbDev"].ConnectionString;
     }
 }
