@@ -70,6 +70,10 @@ namespace Project.QuestionBank.Infrastructure.Repository.Impl
             CurrentDbForTran.Ado.RollbackTran();
         }
 
+        /// <summary>
+        /// 跨方法事务方案使用数据库客户端
+        /// </summary>
+        /// <returns></returns>
         public SqlSugarClient GetInstance()
         {
             SqlSugarClient db = new SqlSugarClient(
@@ -77,8 +81,8 @@ namespace Project.QuestionBank.Infrastructure.Repository.Impl
                 {
                     ConnectionString = DbConfig.ConnectionString,
                     DbType = DbType.SqlServer,
-                    IsAutoCloseConnection = true,
-                    IsShardSameThread = false /*Shard Same Thread*/
+                    IsAutoCloseConnection = false,
+                    IsShardSameThread = true /*Shard Same Thread*/
                 });
 
             return db;
