@@ -955,3 +955,28 @@ h2.method {
         display: none;
     }
 }
+
+/*page-loading*/
+.page-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 19891017;
+    background-color: #fff;
+}
+
+.rubik-loader {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-image: url(/Content/images/ic_loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

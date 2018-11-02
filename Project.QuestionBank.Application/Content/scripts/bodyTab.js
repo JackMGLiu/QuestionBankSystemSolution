@@ -153,128 +153,143 @@ layui.define(["element", "jquery"], function (exports) {
                 }
                 tabIdIndex++;
                 title += '<cite>' + _this.find("cite").text() + '</cite>';
-                title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + tabIdIndex + '">&#x1006;</i>';
-                element.tabAdd(tabFilter, {
-                    title: title,
-                    content: "<iframe src='" + _this.attr("data-url") + "' data-id='" + tabIdIndex + "'></iframe>",
-                    id: new Date().getTime()
-                })
+                title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' +
+                    tabIdIndex +
+                    '">&#x1006;</i>';
+                element.tabAdd(tabFilter,
+                    {
+                        title: title,
+                        content: "<iframe src='" + _this.attr("data-url") + "' data-id='" + tabIdIndex + "'></iframe>",
+                        id: new Date().getTime()
+                    });
                 //当前窗口内容
                 var curmenu = {
-                    "icon": _this.find("i.seraph").attr("data-icon") !== undefined ? _this.find("i.seraph").attr("data-icon") : _this.find("i.layui-icon").attr("data-icon"),
+                    "icon": _this.find("i.seraph").attr("data-icon") !== undefined
+                        ? _this.find("i.seraph").attr("data-icon")
+                        : _this.find("i.layui-icon").attr("data-icon"),
                     "title": _this.find("cite").text(),
                     "href": _this.attr("data-url"),
                     "layId": new Date().getTime()
-                }
+                };
                 menu.push(curmenu);
                 window.sessionStorage.setItem("menu", JSON.stringify(menu)); //打开的窗口
-                window.sessionStorage.setItem("curmenu", JSON.stringify(curmenu));  //当前的窗口
+                window.sessionStorage.setItem("curmenu", JSON.stringify(curmenu)); //当前的窗口
                 element.tabChange(tabFilter, that.getLayId(_this.find("cite").text()));
                 that.tabMove(); //顶部窗口是否可滚动
             } else {
                 //当前窗口内容
                 var curmenu = {
-                    "icon": _this.find("i.seraph").attr("data-icon") !== undefined ? _this.find("i.seraph").attr("data-icon") : _this.find("i.layui-icon").attr("data-icon"),
+                    "icon": _this.find("i.seraph").attr("data-icon") !== undefined
+                        ? _this.find("i.seraph").attr("data-icon")
+                        : _this.find("i.layui-icon").attr("data-icon"),
                     "title": _this.find("cite").text(),
                     "href": _this.attr("data-url")
-                }
+                };
                 that.changeRegresh(_this.parent('.layui-nav-item').index());
-                window.sessionStorage.setItem("curmenu", JSON.stringify(curmenu));  //当前的窗口
+                window.sessionStorage.setItem("curmenu", JSON.stringify(curmenu)); //当前的窗口
                 element.tabChange(tabFilter, that.getLayId(_this.find("cite").text()));
                 that.tabMove(); //顶部窗口是否可滚动
             }
         }
-    }
+    };
 
     //顶部窗口移动
     Tab.prototype.tabMove = function () {
-        $(window).on("resize", function (event) {
-            var topTabsBox = $("#top_tabs_box"),
-                topTabsBoxWidth = $("#top_tabs_box").width(),
-                topTabs = $("#top_tabs"),
-                topTabsWidth = $("#top_tabs").width(),
-                tabLi = topTabs.find("li.layui-this"),
-                top_tabs = document.getElementById("top_tabs"),
-                event = event || window.event;
+        $(window).on("resize",
+            function (event) {
+                var topTabsBox = $("#top_tabs_box"),
+                    topTabsBoxWidth = $("#top_tabs_box").width(),
+                    topTabs = $("#top_tabs"),
+                    topTabsWidth = $("#top_tabs").width(),
+                    tabLi = topTabs.find("li.layui-this"),
+                    top_tabs = document.getElementById("top_tabs"),
+                    event = event || window.event;
 
-            if (topTabsWidth > topTabsBoxWidth) {
-                if (tabLi.position().left > topTabsBoxWidth || tabLi.position().left + topTabsBoxWidth > topTabsWidth) {
-                    topTabs.css("left", topTabsBoxWidth - topTabsWidth);
-                } else {
-                    topTabs.css("left", -tabLi.position().left);
-                }
-                //拖动效果
-                var flag = false;
-                var cur = {
-                    x: 0,
-                    y: 0
-                }
-                var nx, dx, x;
-                function down(event) {
-                    flag = true;
-                    var touch;
-                    if (event.touches) {
-                        touch = event.touches[0];
+                if (topTabsWidth > topTabsBoxWidth) {
+                    if (tabLi.position().left > topTabsBoxWidth ||
+                        tabLi.position().left + topTabsBoxWidth > topTabsWidth) {
+                        topTabs.css("left", topTabsBoxWidth - topTabsWidth);
                     } else {
-                        touch = event;
+                        topTabs.css("left", -tabLi.position().left);
                     }
-                    cur.x = touch.clientX;
-                    dx = top_tabs.offsetLeft;
-                }
-                function move(event) {
-                    var self = this;
-                    if (flag) {
-                        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                    //拖动效果
+                    var flag = false;
+                    var cur = {
+                        x: 0,
+                        y: 0
+                    }
+                    var nx, dx, x;
+
+                    function down(event) {
+                        flag = true;
                         var touch;
                         if (event.touches) {
                             touch = event.touches[0];
                         } else {
                             touch = event;
                         }
-                        nx = touch.clientX - cur.x;
-                        x = dx + nx;
-                        if (x > 0) {
-                            x = 0;
-                        } else {
-                            if (x < topTabsBoxWidth - topTabsWidth) {
-                                x = topTabsBoxWidth - topTabsWidth;
-                            } else {
-                                x = dx + nx;
-                            }
-                        }
-                        top_tabs.style.left = x + "px";
-                        //阻止页面的滑动默认事件
-                        document.addEventListener("touchmove", function () {
-                            event.preventDefault();
-                        }, false);
+                        cur.x = touch.clientX;
+                        dx = top_tabs.offsetLeft;
                     }
+
+                    function move(event) {
+                        var self = this;
+                        if (flag) {
+                            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                            var touch;
+                            if (event.touches) {
+                                touch = event.touches[0];
+                            } else {
+                                touch = event;
+                            }
+                            nx = touch.clientX - cur.x;
+                            x = dx + nx;
+                            if (x > 0) {
+                                x = 0;
+                            } else {
+                                if (x < topTabsBoxWidth - topTabsWidth) {
+                                    x = topTabsBoxWidth - topTabsWidth;
+                                } else {
+                                    x = dx + nx;
+                                }
+                            }
+                            top_tabs.style.left = x + "px";
+                            //阻止页面的滑动默认事件
+                            document.addEventListener("touchmove",
+                                function () {
+                                    event.preventDefault();
+                                },
+                                false);
+                        }
+                    }
+
+                    //鼠标释放时候的函数
+                    function end() {
+                        flag = false;
+                    }
+
+                    //pc端拖动效果
+                    topTabs.on("mousedown", down);
+                    topTabs.on("mousemove", move);
+                    $(document).on("mouseup", end);
+                    //移动端拖动效果
+                    topTabs.on("touchstart", down);
+                    topTabs.on("touchmove", move);
+                    topTabs.on("touchend", end);
+                } else {
+                    //移除pc端拖动效果
+                    topTabs.off("mousedown", down);
+                    topTabs.off("mousemove", move);
+                    topTabs.off("mouseup", end);
+                    //移除移动端拖动效果
+                    topTabs.off("touchstart", down);
+                    topTabs.off("touchmove", move);
+                    topTabs.off("touchend", end);
+                    topTabs.removeAttr("style");
+                    return false;
                 }
-                //鼠标释放时候的函数
-                function end() {
-                    flag = false;
-                }
-                //pc端拖动效果
-                topTabs.on("mousedown", down);
-                topTabs.on("mousemove", move);
-                $(document).on("mouseup", end);
-                //移动端拖动效果
-                topTabs.on("touchstart", down);
-                topTabs.on("touchmove", move);
-                topTabs.on("touchend", end);
-            } else {
-                //移除pc端拖动效果
-                topTabs.off("mousedown", down);
-                topTabs.off("mousemove", move);
-                topTabs.off("mouseup", end);
-                //移除移动端拖动效果
-                topTabs.off("touchstart", down);
-                topTabs.off("touchmove", move);
-                topTabs.off("touchend", end);
-                topTabs.removeAttr("style");
-                return false;
-            }
-        }).resize();
-    }
+            }).resize();
+    };
 
     //切换后获取当前窗口的内容
     $("body").on("click", ".top_tab li", function () {
@@ -340,7 +355,7 @@ layui.define(["element", "jquery"], function (exports) {
                 $(".refresh").addClass("refreshThis");
             }, 2000);
         } else {
-            layer.msg("您点击的速度超过了服务器的响应速度，还是等两秒再刷新吧！");
+            layer.msg("您点击的速度超过了服务器的响应速度，请等两秒后再刷新");
         }
     });
 
