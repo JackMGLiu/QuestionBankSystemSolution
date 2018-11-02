@@ -13,7 +13,7 @@ layui.define(["element", "jquery"], function (exports) {
                 openTabNum: undefined,  //最大可打开窗口数量
                 tabFilter: "bodyTab",  //添加窗口的filter
                 url: undefined  //获取菜单json地址
-            }
+            };
         };
     //生成左侧菜单
     Tab.prototype.navBar = function (strData) {
@@ -77,7 +77,8 @@ layui.define(["element", "jquery"], function (exports) {
             ulHtml += '</li>';
         }
         return ulHtml;
-    }
+    };
+
     //获取二级菜单数据
     Tab.prototype.render = function () {
         //显示左侧菜单
@@ -145,9 +146,9 @@ layui.define(["element", "jquery"], function (exports) {
                 }
             }
             //已打开的窗口中不存在
-            if (that.hasTab(_this.find("cite").text()) === -1 && _this.siblings("dl.layui-nav-child").length == 0) {
-                if ($(".layui-tab-title.top_tab li").length === openTabNum) {
-                    layer.msg('只能同时打开' + openTabNum + '个选项卡哦。不然系统会卡的！');
+            if (that.hasTab(_this.find("cite").text()) === -1 && _this.siblings("dl.layui-nav-child").length === 0) {
+                if ($(".layui-tab-title.top_tab li").length >= openTabNum) {
+                    layer.msg('保证页面的流畅性，只能同时打开' + openTabNum + '个选项卡！');
                     return;
                 }
                 tabIdIndex++;
@@ -282,13 +283,13 @@ layui.define(["element", "jquery"], function (exports) {
         if (window.sessionStorage.getItem("menu")) {
             curmenu = menu[$(this).index() - 1];
         }
-        if ($(this).index() == 0) {
+        if ($(this).index() === 0) {
             window.sessionStorage.setItem("curmenu", '');
         } else {
             window.sessionStorage.setItem("curmenu", JSON.stringify(curmenu));
             if (window.sessionStorage.getItem("curmenu") === "undefined") {
                 //如果删除的不是当前选中的tab,则将curmenu设置成当前选中的tab
-                if (curNav != JSON.stringify(delMenu)) {
+                if (curNav !== JSON.stringify(delMenu)) {
                     window.sessionStorage.setItem("curmenu", curNav);
                 } else {
                     window.sessionStorage.setItem("curmenu", JSON.stringify(menu[liIndex - 1]));
@@ -300,7 +301,7 @@ layui.define(["element", "jquery"], function (exports) {
         setTimeout(function () {
             bodyTab.tabMove();
         }, 100);
-    })
+    });
 
     //删除tab
     $("body").on("click", ".top_tab li i.layui-tab-close", function () {

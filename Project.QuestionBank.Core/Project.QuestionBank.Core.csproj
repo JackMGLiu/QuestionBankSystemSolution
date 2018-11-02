@@ -62,7 +62,9 @@
     <Compile Include="Service\Impl\SysUserService.cs" />
     <Compile Include="Service\Interface\ISysUserService.cs" />
     <Compile Include="ViewModel\PageViewModel.cs" />
+    <Compile Include="ViewModel\ResultModel.cs" />
     <Compile Include="ViewModel\SysRole\SysRoleViewModel.cs" />
+    <Compile Include="ViewModel\SysUser\AddUserModel.cs" />
     <Compile Include="ViewModel\SysUser\SysUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\Project.QuestionBank.Infrastructure\Project.QuestionBank.Infrastructure.csproj">
       <Project>{0a46f5fb-f380-4340-83b7-4a5e4867192f}</Project>
       <Name>Project.QuestionBank.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.QuestionBank.Utils\Project.QuestionBank.Utils.csproj">
+      <Project>{660169b7-96c3-4be3-98b7-8490a90d2d6e}</Project>
+      <Name>Project.QuestionBank.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

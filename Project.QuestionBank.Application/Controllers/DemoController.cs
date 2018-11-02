@@ -42,7 +42,7 @@ namespace Project.QuestionBank.Application.Controllers
 
         public async Task<ActionResult> Test4(int page,int size)
         {
-            var res = await _sysUserService.GetUserPageList(page, size);
+            var res = await _sysUserService.GetUserPageList("",page, size);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 

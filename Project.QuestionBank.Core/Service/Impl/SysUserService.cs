@@ -32,13 +32,15 @@ namespace Project.QuestionBank.Core.Service.Impl
             return res;
         }
 
-        public async Task<List<SysUserViewModel>> GetUserPageList(int page, int size)
-        {
+        public async Task<List<SysUserViewModel>> GetUserPageList(string keyword, int page, int size)
+        {          
             var data = await Task.Run(() => _dal.CurrentDb.Queryable<SysUser, SysRole>((u, r) => new object[]
             {
                 JoinType.Left, u.RoleId == r.Id
             })
-                .Where(u => true)
+                .WhereIF(!string.IsNullOrEmpty(keyword), u => u.UserName.Contains(keyword) || u.RealName.Contains(keyword))
+                .WhereIF(string.IsNullOrEmpty(keyword), u =>true)
+                //.Where()
                 .OrderBy("u.Id desc")
                 .Select((u, r) => new SysUserViewModel
                 {
