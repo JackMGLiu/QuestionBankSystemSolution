@@ -40,6 +40,52 @@ namespace Project.QuestionBank.Infrastructure.Repository.Impl
 
         #endregion
 
+        #region 事务
+
+        public SqlSugarClient CurrentDbForTran
+        {
+            get { return GetInstance(); }
+        }
+
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        public void BeginTran()
+        {
+            CurrentDbForTran.Ado.BeginTran();
+        }
+        /// <summary>
+        /// 提交事务
+        /// </summary>
+        public void Commit()
+        {
+            CurrentDbForTran.Ado.CommitTran();
+        }
+
+        /// <summary>
+        /// 回滚事务
+        /// </summary>
+        public void Rollback()
+        {
+            CurrentDbForTran.Ado.RollbackTran();
+        }
+
+        public SqlSugarClient GetInstance()
+        {
+            SqlSugarClient db = new SqlSugarClient(
+                new ConnectionConfig()
+                {
+                    ConnectionString = DbConfig.ConnectionString,
+                    DbType = DbType.SqlServer,
+                    IsAutoCloseConnection = true,
+                    IsShardSameThread = false /*Shard Same Thread*/
+                });
+
+            return db;
+        }
+
+        #endregion
+
         #region 新增
 
         /// <summary>
@@ -54,6 +100,26 @@ namespace Project.QuestionBank.Infrastructure.Repository.Impl
                 var res = await Task.Run(() => Db.Insertable(entity).ExecuteReturnBigIdentity());
                 //返回的i是long类型,这里你可以根据你的业务需要进行处理
                 return (int)res;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 新增实体含事务
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public async Task<int> AddToTran(TEntity entity)
+        {
+            try
+            {
+                var res = Db.Ado.UseTran<long>(() => Db.Insertable(entity).ExecuteReturnBigIdentity());
+                //返回的i是long类型,这里你可以根据你的业务需要进行处理
+                return (int)res.Data;
             }
             catch (Exception e)
             {

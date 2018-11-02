@@ -35,7 +35,7 @@ namespace Project.QuestionBank.Application.Controllers
         {
             var jsonResult = new ResultModel();
             var user = model.MapTo<AddUserModel, SysUser>();
-            var res = await _sysUserService.Add(user);
+            var res = await _sysUserService.AddToTran(user);
             if (res > 0)
             {
                 jsonResult.status = "1";

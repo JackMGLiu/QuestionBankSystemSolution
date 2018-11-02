@@ -28,6 +28,17 @@ namespace Project.QuestionBank.Infrastructure.Service.Impl
             return await BaseDao.Add(model);
         }
 
+
+        /// <summary>
+        /// 新增实体含事务
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public async Task<int> AddToTran(TEntity entity)
+        {
+            return await BaseDao.AddToTran(entity);
+        }
+
         #endregion
 
         #region 更新

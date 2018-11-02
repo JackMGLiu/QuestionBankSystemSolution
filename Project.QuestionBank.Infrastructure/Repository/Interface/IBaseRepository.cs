@@ -19,6 +19,27 @@ namespace Project.QuestionBank.Infrastructure.Repository.Interface
 
         #endregion
 
+        #region 事务
+
+        SqlSugarClient CurrentDbForTran { get; }
+
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        void BeginTran();
+
+        /// <summary>
+        /// 提交事务
+        /// </summary>
+        void Commit();
+
+        /// <summary>
+        /// 回滚事务
+        /// </summary>
+        void Rollback();
+
+        #endregion
+
         #region 新增
 
         /// <summary>
@@ -27,6 +48,13 @@ namespace Project.QuestionBank.Infrastructure.Repository.Interface
         /// <param name="entity">实体</param>
         /// <returns>int</returns>
         Task<int> Add(TEntity entity);
+
+        /// <summary>
+        /// 新增实体含事务
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        Task<int> AddToTran(TEntity entity);
 
         #endregion
 

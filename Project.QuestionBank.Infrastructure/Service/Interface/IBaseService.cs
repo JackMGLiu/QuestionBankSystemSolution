@@ -21,6 +21,13 @@ namespace Project.QuestionBank.Infrastructure.Service.Interface
         /// <returns>int</returns>
         Task<int> Add(TEntity entity);
 
+        /// <summary>
+        /// 新增实体含事务
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        Task<int> AddToTran(TEntity entity);
+
         #endregion
 
         #region 更新
