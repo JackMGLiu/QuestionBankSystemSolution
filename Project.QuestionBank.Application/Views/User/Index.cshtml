@@ -28,11 +28,11 @@
                     <a class="layui-btn layui-btn-normal addNews_btn">添加用户</a>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-normal btn_delAll">批量删除</a>
                 </div>
             </form>
         </blockquote>
-        <table class="layui-table" id="userlist"></table>
+        <table class="layui-table" id="userlist" lay-filter="userlist"></table>
         <script id="createTime" type="text/html">
             {{#
             var date = new Date();
@@ -49,6 +49,12 @@
                 return d.RoleName;
             }
             }}
+        </script>
+        <!--操作-->
+        <script type="text/html" id="userops">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="userenable">已启用</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
         </script>
     </form>
     <script src="~/Content/layui/layui.js"></script>

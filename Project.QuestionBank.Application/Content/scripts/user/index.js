@@ -31,14 +31,17 @@
             { field: 'Age', width: 80, title: '年龄' },
             { field: 'Email', title: '电子邮箱', minWidth: 150 },
             //{ field: 'CreateTime', title: '添加时间', minWidth: 150, templet: '#createTime' },
-            { field: 'Remark', width: 150, title: '备注信息', sort: false }
+            { field: 'Remark', width: 150, title: '备注信息', sort: false },
+            { fixed: "right", title: '操作', minWidth: 150, toolbar: '#userops', align: "left" }
         ]]
     });
 
+    //新增
     $(".addNews_btn").click(function () {
         addUser();
     });
 
+    //查询
     $(".search_btn").on("click", function () {
         table.reload("userlist", {
             page: {
@@ -48,6 +51,48 @@
                 keyword: $(".searchVal").val()  //搜索的关键字
             }
         });
+    });
+
+    //批量删除
+    $(".btn_delAll").click(function () {
+        var checkStatus = table.checkStatus('userlist'),
+            data = checkStatus.data,
+            ids = [];
+        if (data.length > 0) {
+            for (var i in data) {
+                ids.push(data[i].UserId);
+            }
+            layer.confirm('确定删除选中的用户？', { icon: 3, title: '提示信息' }, function (index) {
+                // $.get("删除文章接口",{
+                //     newsId : newsId  //将需要删除的newsId作为参数传入
+                // },function(data){
+                layer.msg(ids.length);
+                table.reload();
+                layer.close(index);
+                // })
+            });
+        } else {
+            layer.msg("请选择需要删除的用户");
+        }
+    })
+
+    //列表操作
+    table.on('tool(userlist)', function (obj) {
+        var layEvent = obj.event,
+            data = obj.data;
+
+        if (layEvent === 'edit') { //编辑
+            layer.msg("编辑数据：" + data.UserName);
+        } else if (layEvent === 'del') { //删除
+            layer.confirm('确定删除此用户？', { icon: 3, title: '提示信息' }, function (index) {
+                // $.get("删除文章接口",{
+                //     newsId : data.newsId  //将需要删除的newsId作为参数传入
+                // },function(data){
+                table.reload();
+                layer.close(index);
+                // })
+            });
+        }
     });
 });
 
