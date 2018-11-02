@@ -185,8 +185,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery\jquery.form.js" />
+    <Content Include="Content\jquery\jquery.js" />
+    <Content Include="Content\jquery\jquery.validate.js" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\layui.mobile.css" />
+    <Content Include="Content\layui\css\main.css" />
     <Content Include="Content\layui\css\modules\code.css" />
     <Content Include="Content\layui\css\modules\laydate\default\laydate.css" />
     <Content Include="Content\layui\css\modules\layer\default\icon-ext.png" />
@@ -196,6 +200,7 @@
     <Content Include="Content\layui\css\modules\layer\default\loading-1.gif" />
     <Content Include="Content\layui\css\modules\layer\default\loading-2.gif" />
     <Content Include="Content\layui\font\iconfont.svg" />
+    <Content Include="Content\images\face.jpg" />
     <Content Include="Content\layui\images\face\0.gif" />
     <Content Include="Content\layui\images\face\1.gif" />
     <Content Include="Content\layui\images\face\10.gif" />
@@ -289,6 +294,8 @@
     <Content Include="Content\layui\lay\modules\tree.js" />
     <Content Include="Content\layui\lay\modules\upload.js" />
     <Content Include="Content\layui\lay\modules\util.js" />
+    <Content Include="Content\scripts\bodyTab.js" />
+    <Content Include="Content\scripts\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -301,6 +308,7 @@
     <Content Include="Content\layui\font\iconfont.eot" />
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
+    <Content Include="Content\styles\public.css" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -312,6 +320,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\User\scripts\users.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

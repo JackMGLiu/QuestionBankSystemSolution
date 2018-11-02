@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Project.QuestionBank.Core.AutoMapper;
-using Project.QuestionBank.Core.Domain;
 using Project.QuestionBank.Core.Service.Interface;
 using Project.QuestionBank.Core.ViewModel;
-using Project.QuestionBank.Core.ViewModel.SysUser;
 
 namespace Project.QuestionBank.Application.Controllers
 {
