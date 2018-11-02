@@ -40,18 +40,14 @@
     });
 
     $(".search_btn").on("click", function () {
-        if ($(".searchVal").val() !== '') {
-            table.reload("userlist", {
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                },
-                where: {
-                    keyword: $(".searchVal").val()  //搜索的关键字
-                }
-            });
-        } else {
-            layer.msg("请输入搜索的内容");
-        }
+        table.reload("userlist", {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            },
+            where: {
+                keyword: $(".searchVal").val()  //搜索的关键字
+            }
+        });
     });
 });
 
