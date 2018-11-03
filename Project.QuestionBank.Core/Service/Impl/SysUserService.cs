@@ -41,7 +41,7 @@ namespace Project.QuestionBank.Core.Service.Impl
                 .WhereIF(!string.IsNullOrEmpty(keyword), u => u.UserName.Contains(keyword) || u.RealName.Contains(keyword))
                 .WhereIF(string.IsNullOrEmpty(keyword), u =>true)
                 //.Where()
-                .OrderBy("u.Id desc")
+                .OrderBy("u.Id")
                 .Select((u, r) => new SysUserViewModel
                 {
                     UserId = u.Id,

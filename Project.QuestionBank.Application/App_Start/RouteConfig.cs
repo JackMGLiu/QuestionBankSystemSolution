@@ -13,6 +13,8 @@ namespace Project.QuestionBank.Application
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapMvcAttributeRoutes(); //自定义路由
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

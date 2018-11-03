@@ -7,10 +7,11 @@
     table.render({
         elem: '#userlist',
         id: "userlist",
-        url: '/User/users',
+        url: '/user/users',
         height: 'full-125',
         cellMinWidth: 80,
-        limit: 10,
+        limit: 15,
+        limits: [10, 15, 20, 30, 40, 50, 100, 200, 500],
         page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
             layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'], //自定义分页布局
             //,curr: 5 //设定初始在第 5 页
@@ -74,7 +75,7 @@
         } else {
             layer.msg("请选择需要删除的用户");
         }
-    })
+    });
 
     //列表操作
     table.on('tool(userlist)', function (obj) {
@@ -82,7 +83,8 @@
             data = obj.data;
 
         if (layEvent === 'edit') { //编辑
-            layer.msg("编辑数据：" + data.UserName);
+            //layer.msg("编辑数据：" + data.UserName);
+            addUser(data.UserId);
         } else if (layEvent === 'del') { //删除
             layer.confirm('确定删除此用户？', { icon: 3, title: '提示信息' }, function (index) {
                 // $.get("删除文章接口",{
@@ -96,22 +98,27 @@
     });
 });
 
-function addUser(edit) {
+function addUser(key) {
     var index = layui.layer.open({
-        title: "新增用户",
+        title: key == null ?'新增用户':'编辑用户',
         type: 2,
-        content: "/User/Add",
+        content: "/user/add",
         success: function (layero, index) {
             var body = layui.layer.getChildFrame('body', index);
-            //if (edit) {
-            //    body.find(".userName").val(edit.userName);  //登录名
-            //    body.find(".userEmail").val(edit.userEmail);  //邮箱
-            //    body.find(".userSex input[value=" + edit.userSex + "]").prop("checked", "checked");  //性别
-            //    body.find(".userGrade").val(edit.userGrade);  //会员等级
-            //    body.find(".userStatus").val(edit.userStatus);    //用户状态
-            //    body.find(".userDesc").text(edit.userDesc);    //用户简介
-            //    form.render();
-            //}
+            if (key) {
+                $.get('/user/getusermodel?key=' + key, function (res) {
+                    //body.find(".UserName").val(res.UserName);
+                    body.find('.layui-form').formSerialize(res);
+                    form.render();
+                });
+                //    body.find(".userName").val(edit.userName);  //登录名
+                //    body.find(".userEmail").val(edit.userEmail);  //邮箱
+                //    body.find(".userSex input[value=" + edit.userSex + "]").prop("checked", "checked");  //性别
+                //    body.find(".userGrade").val(edit.userGrade);  //会员等级
+                //    body.find(".userStatus").val(edit.userStatus);    //用户状态
+                //    body.find(".userDesc").text(edit.userDesc);    //用户简介
+                //    form.render();
+            }
             setTimeout(function () {
                 layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
                     tips: 3

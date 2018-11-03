@@ -35,7 +35,7 @@ namespace Project.QuestionBank.Application.Controllers
         {
             var jsonResult = new ResultModel();
             var user = model.MapTo<AddUserModel, SysUser>();
-            var res = await _sysUserService.AddToTran(user);
+            var res = await _sysUserService.Add(user);
             if (res > 0)
             {
                 jsonResult.status = "1";
@@ -50,7 +50,6 @@ namespace Project.QuestionBank.Application.Controllers
         }
 
         [HttpGet]
-        [Route("/users")]
         public async Task<ActionResult> Users(string keyword, int page, int size)
         {
             //var data = await _sysUserService.QueryPageAndCountBySql("", page, size, "id desc");
@@ -77,6 +76,14 @@ namespace Project.QuestionBank.Application.Controllers
                 count = userscount,
                 data = users
             };
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetUserModel(int key)
+        {
+            var data = await _sysUserService.QueryById(key);
+            var res = data.ToModel();
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 

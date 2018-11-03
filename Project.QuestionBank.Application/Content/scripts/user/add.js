@@ -2,12 +2,12 @@
     var form = layui.form;
     layer = parent.layer === undefined ? layui.layer : top.layer;
 
-    form.on("submit(addUser)", function (data) {
+    form.on("submit(btnsave)", function (data) {
         //弹出loading
         var index;
         $.ajax({
             type: 'post',
-            url: '/User/Add',
+            url: '/user/add',
             dataType: 'json',
             data: data.field,
             beforeSend: function () {
