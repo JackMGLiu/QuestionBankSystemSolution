@@ -299,7 +299,7 @@
     <Content Include="Content\scripts\bodyTab.js" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\index.js" />
-    <Content Include="Content\scripts\user\add.js" />
+    <Content Include="Content\scripts\user\form.js" />
     <Content Include="Content\scripts\user\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -343,7 +343,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\User\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

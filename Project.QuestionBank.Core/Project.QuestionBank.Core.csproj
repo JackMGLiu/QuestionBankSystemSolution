@@ -64,7 +64,7 @@
     <Compile Include="ViewModel\PageViewModel.cs" />
     <Compile Include="ViewModel\ResultModel.cs" />
     <Compile Include="ViewModel\SysRole\SysRoleViewModel.cs" />
-    <Compile Include="ViewModel\SysUser\AddUserModel.cs" />
+    <Compile Include="ViewModel\SysUser\UserFormModel.cs" />
     <Compile Include="ViewModel\SysUser\SysUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

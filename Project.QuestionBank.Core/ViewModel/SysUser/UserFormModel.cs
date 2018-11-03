@@ -4,13 +4,14 @@ using Project.QuestionBank.Utils.Security;
 
 namespace Project.QuestionBank.Core.ViewModel.SysUser
 {
-    public class AddUserModel
+    public class UserFormModel
     {
-        public AddUserModel()
+        public UserFormModel()
         {
-            Password = ConfigHelper.GetConfig("DefaultPassword").Md5Hash();
-            CreateTime = DateTime.Now;
+
         }
+
+        public int UserId { get; set; }
 
         /// <summary>
         /// 用户名

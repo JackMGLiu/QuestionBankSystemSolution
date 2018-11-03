@@ -24,7 +24,11 @@ namespace Project.QuestionBank.Core.AutoMapper
                 //将视图实体映射到领域实体
                 cfg.CreateMap<SysUserViewModel, SysUser>();
 
-                cfg.CreateMap<AddUserModel, SysUser>();
+                cfg.CreateMap<SysUser, UserFormModel>()
+                    .ForMember(v => v.UserId, v => v.MapFrom(s => s.Id));
+
+                cfg.CreateMap<UserFormModel, SysUser>()
+                    .ForMember(v => v.Id, v => v.MapFrom(s => s.UserId));
 
                 #endregion
 

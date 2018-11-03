@@ -5,9 +5,10 @@
     form.on("submit(btnsave)", function (data) {
         //弹出loading
         var index;
+        var url = isNullOrEmpty(data.field.UserId) ? '/user/form' : '/user/form?key=' + data.field.UserId;
         $.ajax({
             type: 'post',
-            url: '/user/add',
+            url: url,
             dataType: 'json',
             data: data.field,
             beforeSend: function () {

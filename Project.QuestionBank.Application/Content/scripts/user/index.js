@@ -37,6 +37,43 @@
         ]]
     });
 
+    function addUser(key) {
+        var title = isNullOrEmpty(key) ? '新增用户' : '编辑用户';
+        var index = layui.layer.open({
+            title: title,
+            type: 2,
+            content: '/user/form',
+            success: function (layero, index) {
+                var body = layui.layer.getChildFrame('body', index);
+                if (key) {
+                    $.get('/user/getusermodel?key=' + key, function (res) {
+                        //body.find(".UserName").val(res.UserName);
+                        body.find('.layui-form').formSerialize(res);
+                        form.render();
+                    });
+                    //    body.find(".userName").val(edit.userName);  //登录名
+                    //    body.find(".userEmail").val(edit.userEmail);  //邮箱
+                    //    body.find(".userSex input[value=" + edit.userSex + "]").prop("checked", "checked");  //性别
+                    //    body.find(".userGrade").val(edit.userGrade);  //会员等级
+                    //    body.find(".userStatus").val(edit.userStatus);    //用户状态
+                    //    body.find(".userDesc").text(edit.userDesc);    //用户简介
+                    //    form.render();
+                }
+                setTimeout(function () {
+                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
+                        tips: 3
+                    });
+                }, 500);
+            }
+        });
+        layui.layer.full(index);
+        window.sessionStorage.setItem("index", index);
+        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+        $(window).on("resize", function () {
+            layui.layer.full(window.sessionStorage.getItem("index"));
+        });
+    }
+
     //新增
     $(".addNews_btn").click(function () {
         addUser();
@@ -68,6 +105,7 @@
                 //     newsId : newsId  //将需要删除的newsId作为参数传入
                 // },function(data){
                 layer.msg(ids.length);
+             
                 table.reload();
                 layer.close(index);
                 // })
@@ -81,58 +119,25 @@
     table.on('tool(userlist)', function (obj) {
         var layEvent = obj.event,
             data = obj.data;
-
         if (layEvent === 'edit') { //编辑
-            //layer.msg("编辑数据：" + data.UserName);
             addUser(data.UserId);
         } else if (layEvent === 'del') { //删除
             layer.confirm('确定删除此用户？', { icon: 3, title: '提示信息' }, function (index) {
-                // $.get("删除文章接口",{
-                //     newsId : data.newsId  //将需要删除的newsId作为参数传入
-                // },function(data){
-                table.reload();
-                layer.close(index);
-                // })
+                $.post("/user/delete", { key: data.UserId }, function (res) {
+                    if (res.status === '1') {
+                        top.layer.msg(res.msg);
+                        layer.close(index);
+                        location.reload();
+                    } else {
+                        top.layer.msg(res.msg);
+                        layer.close(index);
+                        return false;
+                    }
+                });
             });
         }
     });
 });
-
-function addUser(key) {
-    var index = layui.layer.open({
-        title: key == null ?'新增用户':'编辑用户',
-        type: 2,
-        content: "/user/add",
-        success: function (layero, index) {
-            var body = layui.layer.getChildFrame('body', index);
-            if (key) {
-                $.get('/user/getusermodel?key=' + key, function (res) {
-                    //body.find(".UserName").val(res.UserName);
-                    body.find('.layui-form').formSerialize(res);
-                    form.render();
-                });
-                //    body.find(".userName").val(edit.userName);  //登录名
-                //    body.find(".userEmail").val(edit.userEmail);  //邮箱
-                //    body.find(".userSex input[value=" + edit.userSex + "]").prop("checked", "checked");  //性别
-                //    body.find(".userGrade").val(edit.userGrade);  //会员等级
-                //    body.find(".userStatus").val(edit.userStatus);    //用户状态
-                //    body.find(".userDesc").text(edit.userDesc);    //用户简介
-                //    form.render();
-            }
-            setTimeout(function () {
-                layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
-                    tips: 3
-                });
-            }, 500);
-        }
-    });
-    layui.layer.full(index);
-    window.sessionStorage.setItem("index", index);
-    //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-    $(window).on("resize", function () {
-        layui.layer.full(window.sessionStorage.getItem("index"));
-    });
-}
 
 //对Date的扩展，将 Date 转化为指定格式的String
 //月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
