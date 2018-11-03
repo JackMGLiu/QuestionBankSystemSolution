@@ -90,13 +90,13 @@
       "spread": false
     },
     {
-      "title": "日志管理",
+      "title": "数据字典",
       "icon": "&#xe638;",
       "href": "page/doc/bodyTabDoc.html",
       "spread": false
     },
     {
-      "title": "题库分类",
+      "title": "日志管理",
       "icon": "&#xe638;",
       "href": "page/doc/bodyTabDoc.html",
       "spread": false
