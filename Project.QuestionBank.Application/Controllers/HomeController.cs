@@ -12,12 +12,16 @@ namespace Project.QuestionBank.Application.Controllers
         public ActionResult Index()
         {
             string title = ConfigHelper.GetConfig("SystemName");
+            string shorTitle = ConfigHelper.GetConfig("ShortName");
             ViewBag.SystemName = title;
+            ViewBag.ShortName = shorTitle;
             return View();
         }
 
         public ActionResult Main()
         {
+            string title = ConfigHelper.GetConfig("SystemName");
+            ViewBag.SystemName = title;
             return View();
         }
 
