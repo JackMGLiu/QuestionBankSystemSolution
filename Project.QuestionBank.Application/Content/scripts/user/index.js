@@ -8,7 +8,7 @@
         elem: '#userlist',
         id: "userlist",
         url: '/user/users',
-        height: 'full-125',
+        height: 'full-105',
         cellMinWidth: 80,
         limit: 15,
         limits: [10, 15, 20, 30, 40, 50, 100, 200, 500],

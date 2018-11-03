@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>数据字典</title>
+    <title>数据字典管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="~/Content/layui/css/layui.css" rel="stylesheet" media="all" />
     <link href="~/Content/styles/public.css" rel="stylesheet" media="all" />
+    <link href="~/Content/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <style>
         html {
             background-color: #f2f2f2;
@@ -41,8 +42,8 @@
             <div class="layui-col-xs2 layui-col-md3">
                 <div class="layui-card" style="height:500px;overflow: hidden;">
                     <div class="layui-card-header">字典类型</div>
-                    <div class="layui-card-body">
-
+                    <div class="layui-card-body" style="margin:3px;">
+                        <ul id="treeDemo" class="ztree"></ul>
                     </div>
                 </div>
             </div>
@@ -50,21 +51,85 @@
                 <div class="layui-card" style="height:500px;overflow: hidden;">
                     <div class="layui-card-header">字典明细</div>
                     <div class="layui-card-body">
-
+                        <blockquote class="layui-elem-quote quoteBox">      
+                            <div class="layui-inline">
+                                <a class="layui-btn layui-btn-sm layui-btn-normal addNews_btn">新增项目</a>
+                            </div>
+                            <div style="float: right;">
+                                <div class="layui-inline">
+                                    <a class="layui-btn layui-btn-sm layui-btn-warm addNews_btn">新增类型</a>
+                                </div>
+                                <div class="layui-inline">
+                                    <a class="layui-btn layui-btn-sm layui-btn-danger btn_delAll">字典类型管理</a>
+                                </div>
+                            </div>
+       
+                        </blockquote>
+                        <table class="layui-table" id="dictlist" lay-filter="dictlist"></table>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+    <!--操作-->
+    <script type="text/html" id="userops">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    </script>
     <script src="~/Content/layui/layui.js"></script>
     <script src="~/Content/jquery/jquery.js"></script>
+    <script src="~/Content/ztree/js/jquery.ztree.all.min.js"></script>
+    <script src="~/Content/scripts/dict/index.js"></script>
     <script src="~/Content/scripts/common.js"></script>
     <script>
         $(document).ready(function () {
             var bodyHeight = $(document).height();
             $('.layui-card').css('height', bodyHeight - 50 + 'px');
-        })
+
+
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var zNodes = [
+            { id: 1, pId: 0, name: "父节点1 - 展开", open: true },
+            { id: 11, pId: 1, name: "父节点11 - 折叠" },
+            { id: 111, pId: 11, name: "叶子节点111" },
+            { id: 112, pId: 11, name: "叶子节点112" },
+            { id: 113, pId: 11, name: "叶子节点113" },
+            { id: 114, pId: 11, name: "叶子节点114" },
+            { id: 12, pId: 1, name: "父节点12 - 折叠" },
+            { id: 121, pId: 12, name: "叶子节点121" },
+            { id: 122, pId: 12, name: "叶子节点122" },
+            { id: 123, pId: 12, name: "叶子节点123" },
+            { id: 124, pId: 12, name: "叶子节点124" },
+            { id: 13, pId: 1, name: "父节点13 - 没有子节点", isParent: true },
+            { id: 2, pId: 0, name: "父节点2 - 折叠" },
+            { id: 21, pId: 2, name: "父节点21 - 展开", open: true },
+            { id: 211, pId: 21, name: "叶子节点211" },
+            { id: 212, pId: 21, name: "叶子节点212" },
+            { id: 213, pId: 21, name: "叶子节点213" },
+            { id: 214, pId: 21, name: "叶子节点214" },
+            { id: 22, pId: 2, name: "父节点22 - 折叠" },
+            { id: 221, pId: 22, name: "叶子节点221" },
+            { id: 222, pId: 22, name: "叶子节点222" },
+            { id: 223, pId: 22, name: "叶子节点223" },
+            { id: 224, pId: 22, name: "叶子节点224" },
+            { id: 23, pId: 2, name: "父节点23 - 折叠" },
+            { id: 231, pId: 23, name: "叶子节点231" },
+            { id: 232, pId: 23, name: "叶子节点232" },
+            { id: 233, pId: 23, name: "叶子节点233" },
+            { id: 234, pId: 23, name: "叶子节点234" },
+            { id: 3, pId: 0, name: "父节点3 - 没有子节点", isParent: true }
+        ];
     </script>
 </body>
 </html>

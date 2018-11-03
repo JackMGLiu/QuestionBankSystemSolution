@@ -301,6 +301,7 @@
     <Content Include="Content\layui\lay\modules\util.js" />
     <Content Include="Content\scripts\bodyTab.js" />
     <Content Include="Content\scripts\common.js" />
+    <Content Include="Content\scripts\dict\index.js" />
     <Content Include="Content\scripts\index.js" />
     <Content Include="Content\scripts\user\form.js" />
     <Content Include="Content\scripts\user\index.js" />
