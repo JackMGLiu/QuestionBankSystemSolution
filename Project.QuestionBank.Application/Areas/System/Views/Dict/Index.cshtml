@@ -16,124 +16,55 @@
     <link href="~/Content/layui/css/layui.css" rel="stylesheet" media="all" />
     <link href="~/Content/styles/public.css" rel="stylesheet" media="all" />
     <style>
-        .layui-layout-admin .layui-side {
-            position: fixed;
-            top: 0;
-            left: -260px;
-            transition: all .3s;
-            -webkit-transition: all .3s;
-            z-index: 10000;
+        html {
+            background-color: #f2f2f2;
         }
 
-        .layui-body {
-            position: static;
-            bottom: 0;
-            left: 0;
+        .layui-fluid {
+            padding: 15px;
         }
 
-        .site-mobile .layui-side {
-            left: 0;
-        }
-
-        .site-mobile .layui-side-child {
+        .layui-card .layui-card-header .layui-badge.pull-right {
             top: 50%;
-            left: 200px;
-            height: 300px;
-            margin-top: -100px;
-        }
-        .layui-side-child {
-            width: 160px !important;
-            left: 200px;
-            bottom: 60px !important;
-            border-right: 1px solid #eee;
-            background-color: #fff;
-        }
-
-            .layui-side-child .layui-side-scroll {
-                width: 170px;
-            }
-
-            .layui-side-child .layui-nav {
-                padding: 10px 0;
-                width: 160px;
-                border-radius: 0;
-                background: none
-            }
-
-            .layui-side-child .layui-nav-child {
-                border-radius: 0;
-            }
-
-            .layui-side-child .layui-nav .layui-nav-title a,
-            .layui-side-child .layui-nav .layui-nav-title a:hover,
-            .layui-side-child .layui-nav-itemed > a {
-                color: #666 !important;
-            }
-
-            .layui-side-child .layui-nav-itemed .layui-nav-child {
-                margin-bottom: 10px;
-                background: none !important;
-            }
-
-            .layui-side-child .layui-nav .layui-nav-item a {
-                height: 30px;
-                line-height: 30px;
-                color: #666;
-            }
-
-                .layui-side-child .layui-nav .layui-nav-item a:hover {
-                    background: none !important;
-                }
-
-            .layui-side-child .layui-nav .layui-nav-child a {
-                color: #999 !important;
-            }
-
-            .layui-side-child .layui-nav .layui-nav-more {
-                display: none;
-            }
-
-            .layui-side-child .layui-nav-tree .layui-this,
-            .layui-side-child .layui-nav-tree .layui-this > a,
-            .layui-side-child .layui-nav-tree .layui-nav-child dd.layui-this,
-            .layui-side-child .layui-nav-tree .layui-nav-child dd.layui-this a {
-                background: none;
-                color: #5FB878 !important;
-            }
-
-            .layui-side-child .layui-nav .layui-nav-child a:hover {
-                color: #009688 !important
-            }
-
-            .layui-side-child .layui-nav-bar {
-                background-color: #5FB878;
-            }
-
-        body .site-demo-title,
-        body .layui-layout-admin .site-demo {
-            left: 360px
-        }
-
-        .layui-layout-admin .site-demo-body {
-            top: 107px;
+            margin-top: -9px;
         }
     </style>
+
 </head>
 <body class="childrenBody">
     <!-- 页面加载loading -->
     <div class="page-loading">
         <div class="rubik-loader"></div>
     </div>
-    <div class="layui-side layui-side-child">
-        <div class="layui-side-scroll">
-            11111111
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs2 layui-col-md3">
+                <div class="layui-card" style="height:500px;overflow: hidden;">
+                    <div class="layui-card-header">字典类型</div>
+                    <div class="layui-card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs10 layui-col-md9">
+                <div class="layui-card" style="height:500px;overflow: hidden;">
+                    <div class="layui-card-header">字典明细</div>
+                    <div class="layui-card-body">
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <div class="layui-body site-demo site-demo-body">
-        ssssss
     </div>
     <script src="~/Content/layui/layui.js"></script>
     <script src="~/Content/jquery/jquery.js"></script>
     <script src="~/Content/scripts/common.js"></script>
+    <script>
+        $(document).ready(function () {
+            var bodyHeight = $(document).height();
+            $('.layui-card').css('height', bodyHeight - 50 + 'px');
+        })
+    </script>
 </body>
 </html>

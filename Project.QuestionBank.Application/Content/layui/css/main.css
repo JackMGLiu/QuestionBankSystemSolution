@@ -1,4 +1,15 @@
 ﻿/*公共样式*/
+.layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
+    height: 1px;
+    background-color: #03152A;
+    top: 0 !important;
+}
+
+.layui-layout-admin .layui-header .layui-nav-item .layui-icon {
+    font-size: 18px; /** 鍥炬爣澶у皬 */
+}
+
+
 .header .layui-nav-child {
     z-index: 99999;
     top: 60px;
@@ -387,7 +398,17 @@ iframe {
         .component dl dd.layui-select-tips {
             color: #999 !important;
         }
-
+/*底部*/
+.layui-layout-admin .layui-footer {
+    position: fixed;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 15px;
+    background-color: #c4ccd5;
+}
 /*layui-body*/
 .layui-body {
     overflow: hidden;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Project.QuestionBank.Utils.Helper;
 
 namespace Project.QuestionBank.Application.Controllers
 {
@@ -10,6 +11,8 @@ namespace Project.QuestionBank.Application.Controllers
     {
         public ActionResult Index()
         {
+            string title = ConfigHelper.GetConfig("SystemName");
+            ViewBag.SystemName = title;
             return View();
         }
 
