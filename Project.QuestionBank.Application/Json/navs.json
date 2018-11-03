@@ -92,7 +92,7 @@
     {
       "title": "数据字典",
       "icon": "&#xe638;",
-      "href": "page/doc/bodyTabDoc.html",
+      "href": "/system/dict/index",
       "spread": false
     },
     {

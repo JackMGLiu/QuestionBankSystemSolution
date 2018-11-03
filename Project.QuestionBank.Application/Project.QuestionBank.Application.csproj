@@ -172,6 +172,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\System\Controllers\DictController.cs" />
+    <Compile Include="Areas\System\SystemAreaRegistration.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -317,6 +319,8 @@
     <Content Include="Content\layui\font\iconfont.woff" />
     <Content Include="Content\styles\public.css" />
     <Content Include="Json\navs.json" />
+    <Content Include="Areas\System\Views\web.config" />
+    <Content Include="Areas\System\Views\Dict\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -349,6 +353,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\System\Models\" />
+    <Folder Include="Areas\System\Views\Shared\" />
     <Folder Include="Views\Demo\" />
   </ItemGroup>
   <ItemGroup>
