@@ -54,6 +54,8 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\AutoMapperStartup.cs" />
     <Compile Include="AutoMapper\MappingExtensions.cs" />
+    <Compile Include="Domain\DictItem.cs" />
+    <Compile Include="Domain\DictType.cs" />
     <Compile Include="Domain\SysRole.cs" />
     <Compile Include="Domain\SysUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
