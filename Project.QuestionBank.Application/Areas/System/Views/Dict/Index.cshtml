@@ -16,6 +16,7 @@
     <link href="~/Content/layui/css/layui.css" rel="stylesheet" media="all" />
     <link href="~/Content/styles/public.css" rel="stylesheet" media="all" />
     <link href="~/Content/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <link href="~/Content/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
     <style>
         html {
             background-color: #f2f2f2;
@@ -40,7 +41,7 @@
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
             <div class="layui-col-xs2 layui-col-md3">
-                <div class="layui-card" style="height:500px;overflow: hidden;">
+                <div class="layui-card cardcontent" style="height:500px;overflow: hidden;">
                     <div class="layui-card-header">字典类型</div>
                     <div class="layui-card-body" style="margin:3px;">
                         <ul id="treeDemo" class="ztree"></ul>
@@ -51,7 +52,7 @@
                 <div class="layui-card" style="height:500px;overflow: hidden;">
                     <div class="layui-card-header">字典明细</div>
                     <div class="layui-card-body">
-                        <blockquote class="layui-elem-quote quoteBox">      
+                        <blockquote class="layui-elem-quote quoteBox">
                             <div class="layui-inline">
                                 <a class="layui-btn layui-btn-sm layui-btn-normal addNews_btn">新增项目</a>
                             </div>
@@ -63,7 +64,7 @@
                                     <a class="layui-btn layui-btn-sm layui-btn-danger btn_delAll">字典类型管理</a>
                                 </div>
                             </div>
-       
+
                         </blockquote>
                         <table class="layui-table" id="dictlist" lay-filter="dictlist"></table>
                     </div>
@@ -81,6 +82,7 @@
     <script src="~/Content/jquery/jquery.js"></script>
     <script src="~/Content/ztree/js/jquery.ztree.all.min.js"></script>
     <script src="~/Content/scripts/dict/index.js"></script>
+    <script src="~/Content/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="~/Content/scripts/common.js"></script>
     <script>
         $(document).ready(function () {
@@ -89,6 +91,13 @@
 
 
             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+            $(window).load(function () {
+                $(".cardcontent").mCustomScrollbar({
+                    axis: "yx",
+                    theme: "dark"
+                });
+            });
         });
 
         var setting = {
@@ -128,6 +137,13 @@
             { id: 232, pId: 23, name: "叶子节点232" },
             { id: 233, pId: 23, name: "叶子节点233" },
             { id: 234, pId: 23, name: "叶子节点234" },
+            { id: 235, pId: 23, name: "叶子节点231" },
+            { id: 236, pId: 23, name: "叶子节点232" },
+            { id: 237, pId: 23, name: "叶子节点233" },
+            { id: 238, pId: 23, name: "叶子节点234" },
+            { id: 239, pId: 23, name: "叶子节点232" },
+            { id: 240, pId: 23, name: "叶子节点233" },
+            { id: 241, pId: 23, name: "叶子节点234" },
             { id: 3, pId: 0, name: "父节点3 - 没有子节点", isParent: true }
         ];
     </script>

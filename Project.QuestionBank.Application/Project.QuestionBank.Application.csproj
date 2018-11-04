@@ -305,6 +305,11 @@
     <Content Include="Content\scripts\index.js" />
     <Content Include="Content\scripts\user\form.js" />
     <Content Include="Content\scripts\user\index.js" />
+    <Content Include="Content\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\scrollbar\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\scrollbar\jquery.mCustomScrollbar.js" />
+    <Content Include="Content\scrollbar\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\scrollbar\mCSB_buttons.png" />
     <Content Include="Content\styles\main.css" />
     <Content Include="Content\ztree\api\apiCss\api.js" />
     <Content Include="Content\ztree\api\apiCss\common.css" />
