@@ -1,5 +1,6 @@
 ﻿var form,layer,laytpl,table;
 var typeId = $('#dtypeid').val();
+var formIndex;
 layui.use(['form', 'layer', 'table', 'laytpl'],
     function () {
         form = layui.form,
@@ -130,7 +131,7 @@ function zTreeOnClick(event, treeId, treeNode) {
 
 function addItem(key) {
     var title = isNullOrEmpty(key) ? '新增项目' : '编辑项目';
-    var index = layui.layer.open({
+    formIndex = layui.layer.open({
         id:'dicttype',
         title: title,
         type: 2,
@@ -158,10 +159,23 @@ function addItem(key) {
             }, 500);
         }
     });
-    layui.layer.full(index);
-    window.sessionStorage.setItem("index", index);
+    layui.layer.full(formIndex);
+    window.sessionStorage.setItem("index", formIndex);
     //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
     $(window).on("resize", function () {
         layui.layer.full(window.sessionStorage.getItem("index"));
     });
+}
+
+function reloadData(typeid) {
+    layui.layer.close(formIndex);
+    table.reload("dictlist", {
+        page: {
+            curr: 1 //重新从第 1 页开始
+        },
+        where: {
+            typeId: typeid //字典类型
+        }
+    });
+
 }

@@ -9,8 +9,6 @@
 
     form.on("submit(btnsave)", function (data) {
         //弹出loading
-        //alert($('#EnabledMark').val());
-        //alert(data.field.Enabled)
         var index;
         var url = isNullOrEmpty(data.field.DictItemId) ? '/system/dict/itemform' : '/system/dict/itemform?key=' + data.field.UserId;
         var enableVal = isNullOrEmpty(data.field.EnabledMark) ? 0 : data.field.EnabledMark;
@@ -35,9 +33,7 @@
             success: function (res) {
                 if (res.status === '1') {
                     top.layer.msg(res.msg);
-                    layer.closeAll("iframe");
-                    //刷新父页面
-                    parent.location.reload();
+                    parent.reloadData(data.field.DictId);
                 } else {
                     top.layer.msg(res.msg);
                     return false;
