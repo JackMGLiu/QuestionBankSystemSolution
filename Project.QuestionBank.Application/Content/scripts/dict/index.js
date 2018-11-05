@@ -167,6 +167,7 @@ function addItem(key) {
     });
 }
 
+//刷新表格
 function reloadData(typeid) {
     layui.layer.close(formIndex);
     table.reload("dictlist", {

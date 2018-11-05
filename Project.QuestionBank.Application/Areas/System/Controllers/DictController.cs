@@ -2,6 +2,7 @@
 using Project.QuestionBank.Core.Service.Interface;
 using Project.QuestionBank.Core.ViewModel;
 using Project.QuestionBank.Utils;
+using Project.QuestionBank.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -126,6 +127,35 @@ namespace Project.QuestionBank.Application.Areas.System.Controllers
             return Json(jsonResult);
         }
 
+
+        #endregion
+
+        #region api
+
+        /// <summary>
+        /// 根据类型代码获取字典列表
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> GetItemsByCode(string code)
+        {
+            if (!code.IsEmpty())
+            {
+                var type = await _dictTypeService.FindEntity(m => m.DictCode == code && m.DeleteMark == 0);
+                if (!type.IsEmpty())
+                {
+                    var data = await _dictItemService.Query(m => m.DictId == type.DictId);
+                    return Json(data, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json("",JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
 
         #endregion
     }
