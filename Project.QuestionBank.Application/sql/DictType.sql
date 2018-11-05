@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[DataItem](
+﻿CREATE TABLE [dbo].[DictType](
 	[DictId] [nvarchar](50) NOT NULL,
 	[ParentId] [nvarchar](50) NULL,
 	[DictCode] [nvarchar](50) NULL,
@@ -12,10 +12,10 @@
 	[CreateTime] [datetime] NULL,
 	[CreateUserId] [nvarchar](50) NULL,
 	[CreateUserName] [nvarchar](50) NULL,
-	[ModifyDate] [datetime] NULL,
+	[ModifyTime] [datetime] NULL,
 	[ModifyUserId] [nvarchar](50) NULL,
 	[ModifyUserName] [nvarchar](50) NULL,
- CONSTRAINT [PK_DATAITEM] PRIMARY KEY NONCLUSTERED 
+ CONSTRAINT [PK_DATATYPE] PRIMARY KEY NONCLUSTERED 
 (
 	[DictId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[DictItem](
 	[CreateTime] [datetime] NULL,
 	[CreateUserId] [nvarchar](50) NULL,
 	[CreateUserName] [nvarchar](50) NULL,
-	[ModifyDate] [datetime] NULL,
+	[ModifyTime] [datetime] NULL,
 	[ModifyUserId] [nvarchar](50) NULL,
 	[ModifyUserName] [nvarchar](50) NULL,
  CONSTRAINT [PK_DATAITEM] PRIMARY KEY NONCLUSTERED 

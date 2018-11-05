@@ -59,9 +59,17 @@
     <Compile Include="Domain\SysRole.cs" />
     <Compile Include="Domain\SysUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Impl\DictTypeRepository.cs" />
+    <Compile Include="Repository\Impl\DictItemRepository.cs" />
     <Compile Include="Repository\Impl\SysUserRepository.cs" />
+    <Compile Include="Repository\Interface\IDictTypeRepository.cs" />
+    <Compile Include="Repository\Interface\IDictItemRepository.cs" />
     <Compile Include="Repository\Interface\ISysUserRepository.cs" />
+    <Compile Include="Service\Impl\DictItemService.cs" />
+    <Compile Include="Service\Impl\DictTypeService.cs" />
     <Compile Include="Service\Impl\SysUserService.cs" />
+    <Compile Include="Service\Interface\IDictItemService.cs" />
+    <Compile Include="Service\Interface\IDictTypeService.cs" />
     <Compile Include="Service\Interface\ISysUserService.cs" />
     <Compile Include="ViewModel\PageViewModel.cs" />
     <Compile Include="ViewModel\ResultModel.cs" />

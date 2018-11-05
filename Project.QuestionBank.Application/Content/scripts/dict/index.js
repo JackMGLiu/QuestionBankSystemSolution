@@ -40,3 +40,68 @@
             ]
         });
     });
+
+$(document).ready(function () {
+    var bodyHeight = $(document).height();
+    $('.layui-card').css('height', bodyHeight - 50 + 'px');
+    $.fn.zTree.init($("#dictTypeTree"), setting);
+    $(window).load(function () {
+        $(".cardcontent").mCustomScrollbar({
+            axis: "yx",
+            theme: "dark"
+        });
+    });
+});
+
+var setting = {
+    data: {
+        simpleData: {
+            enable: true,
+            idKey: 'DictId',
+            pIdKey: 'ParentId',
+            rootPId: '0'
+        },
+        key: {
+            name: 'DictName'
+        }
+    },
+    async: {
+        enable: true,
+        type: "get",
+        dataType: "json",
+        url: "/dict/treelist",
+        dataFilter: filter
+    },
+    callback: {
+        beforeClick: zTreeBeforeClick,
+        onClick: zTreeOnClick
+    }
+};
+
+function filter(treeId, parentNode, responseData) {
+    if (responseData) {
+        for (var i = 0; i < responseData.length; i++) {
+            responseData[i].DictName += '【' + responseData[i].DictCode + '】';
+            if (responseData[i].IsNav === 1) {
+                responseData[i].open = true;
+            }
+        }
+    }
+    return responseData;
+}
+
+function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+    if (treeNode.IsNav === 1) {
+        treeNode.open = true;
+    }
+}
+
+function zTreeBeforeClick(treeId, treeNode, clickFlag) {
+    return (treeNode.IsNav !== 1);
+}
+
+function zTreeOnClick(event, treeId, treeNode) {
+    $('#dtypeid').val(treeNode.DictId);
+    $('#dtypename').text(treeNode.DictName);
+    //设置表格显示及标题提示 加载表格数据
+}

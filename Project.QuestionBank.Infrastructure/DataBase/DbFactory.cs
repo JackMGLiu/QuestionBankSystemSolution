@@ -31,8 +31,8 @@ namespace Project.QuestionBank.Infrastructure.DataBase
         private DbFactory()
         {
             var dataType = ConfigurationManager.AppSettings["DbType"];
-            //var connectionSting = DbConfig.ConnectionString;
-            var connectionSting = DbConfig.ConnectionStringDev;
+            var connectionSting = DbConfig.ConnectionString;
+            //var connectionSting = DbConfig.ConnectionStringDev;
             if (dataType == "SqlServer")
             {
                 DbType = DbType.SqlServer;
