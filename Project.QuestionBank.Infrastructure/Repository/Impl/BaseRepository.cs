@@ -97,13 +97,32 @@ namespace Project.QuestionBank.Infrastructure.Repository.Impl
         /// </summary>
         /// <param name="entity">实体</param>
         /// <returns>int</returns>
-        public async Task<int> Add(TEntity entity)
+        public async Task<int> AddAndReturnId(TEntity entity)
         {
             try
             {
                 var res = await Task.Run(() => Db.Insertable(entity).ExecuteReturnBigIdentity());
                 //返回的i是long类型,这里你可以根据你的业务需要进行处理
                 return (int)res;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns>int</returns>
+        public async Task<int> Add(TEntity entity)
+        {
+            try
+            {
+                var res = await Task.Run(() => Db.Insertable(entity).ExecuteCommand());
+                return res;
             }
             catch (Exception e)
             {

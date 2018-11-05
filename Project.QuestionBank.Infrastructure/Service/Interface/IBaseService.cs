@@ -19,6 +19,13 @@ namespace Project.QuestionBank.Infrastructure.Service.Interface
         /// </summary>
         /// <param name="entity">实体</param>
         /// <returns>int</returns>
+        Task<int> AddAndReturnId(TEntity entity);
+
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns>int</returns>
         Task<int> Add(TEntity entity);
 
         /// <summary>

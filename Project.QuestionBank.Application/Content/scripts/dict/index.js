@@ -1,13 +1,11 @@
 ﻿var form,layer,laytpl,table;
-var typeId;
+var typeId = $('#dtypeid').val();
 layui.use(['form', 'layer', 'table', 'laytpl'],
     function () {
         form = layui.form,
             layer = parent.layer === undefined ? layui.layer : top.layer,
             laytpl = layui.laytpl,
             table = layui.table;
-
-        typeId = $('#dtypeid').val();
 
         table.render({
             elem: '#dictlist',
@@ -34,8 +32,9 @@ layui.use(['form', 'layer', 'table', 'laytpl'],
                     { type: 'checkbox' },
                     { field: 'DictItemId', width: 80, title: '主键', hide: true },
                     { field: 'ItemName', width: 100, title: '项目名称' },
-                    { field: 'ItemVal', width: 80, title: '项目值', sort: false },
-                    { field: 'ItemPy', width: 80, title: '简拼' },
+                    { field: 'ItemCode', width: 100, title: '项目代码' },
+                    { field: 'ItemValue', width: 80, title: '项目值', sort: false },
+                    { field: 'SimpleSpelling', width: 80, title: '简拼' },
                     { field: 'SortCode', width: 70, title: '排序' },
                     { field: 'Enable', title: '有效', width: 80 },
                     //{ field: 'CreateTime', title: '添加时间', minWidth: 150, templet: '#createTime' },
@@ -55,6 +54,16 @@ $(document).ready(function () {
             axis: "yx",
             theme: "dark"
         });
+    });
+
+    //新增项目
+    $(".addItem_btn").click(function () {
+        typeId = $('#dtypeid').val();
+        if (!typeId) {
+            layer.msg("请选择字典类型");
+            return;
+        }
+        addItem();
     });
 });
 
@@ -116,5 +125,43 @@ function zTreeOnClick(event, treeId, treeNode) {
         where: {
             typeId: treeNode.DictId //字典类型
         }
+    });
+}
+
+function addItem(key) {
+    var title = isNullOrEmpty(key) ? '新增项目' : '编辑项目';
+    var index = layui.layer.open({
+        id:'dicttype',
+        title: title,
+        type: 2,
+        content: '/system/dict/itemform',
+        success: function (layero, index) {
+            var body = layui.layer.getChildFrame('body', index);
+            if (key) {
+                $.get('/user/getusermodel?key=' + key, function (res) {
+                    //body.find(".UserName").val(res.UserName);
+                    body.find('.layui-form').formSerialize(res);
+                    form.render();
+                });
+                //    body.find(".userName").val(edit.userName);  //登录名
+                //    body.find(".userEmail").val(edit.userEmail);  //邮箱
+                //    body.find(".userSex input[value=" + edit.userSex + "]").prop("checked", "checked");  //性别
+                //    body.find(".userGrade").val(edit.userGrade);  //会员等级
+                //    body.find(".userStatus").val(edit.userStatus);    //用户状态
+                //    body.find(".userDesc").text(edit.userDesc);    //用户简介
+                //    form.render();
+            }
+            setTimeout(function () {
+                layui.layer.tips('点击此处返回数据列表', '.layui-layer-setwin .layui-layer-close', {
+                    tips: 3
+                });
+            }, 500);
+        }
+    });
+    layui.layer.full(index);
+    window.sessionStorage.setItem("index", index);
+    //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+    $(window).on("resize", function () {
+        layui.layer.full(window.sessionStorage.getItem("index"));
     });
 }

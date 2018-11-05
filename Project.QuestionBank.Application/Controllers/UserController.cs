@@ -34,7 +34,7 @@ namespace Project.QuestionBank.Application.Controllers
         }
 
         /// <summary>
-        /// 信息编辑及删除
+        /// 信息新增及编辑
         /// </summary>
         /// <param name="key"></param>
         /// <param name="model"></param>

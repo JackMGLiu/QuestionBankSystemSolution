@@ -23,11 +23,20 @@ namespace Project.QuestionBank.Infrastructure.Service.Impl
         /// </summary>
         /// <param name="model">实体</param>
         /// <returns>int</returns>
+        public async Task<int> AddAndReturnId(TEntity model)
+        {
+            return await BaseDao.AddAndReturnId(model);
+        }
+
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns>int</returns>
         public async Task<int> Add(TEntity model)
         {
             return await BaseDao.Add(model);
         }
-
 
         /// <summary>
         /// 新增实体含事务

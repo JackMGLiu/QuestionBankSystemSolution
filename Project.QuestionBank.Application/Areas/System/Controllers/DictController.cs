@@ -1,5 +1,7 @@
-﻿using Project.QuestionBank.Core.Service.Interface;
+﻿using Project.QuestionBank.Core.Domain;
+using Project.QuestionBank.Core.Service.Interface;
 using Project.QuestionBank.Core.ViewModel;
+using Project.QuestionBank.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +64,66 @@ namespace Project.QuestionBank.Application.Areas.System.Controllers
                 data = data.Item1
             };
             return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ItemForm()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 信息新增及编辑
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> ItemForm(int? key, DictItem model)
+        {
+            var jsonResult = new ResultModel();
+            if (!key.HasValue)
+            {
+                model.DictItemId = Guid.NewGuid().ToString("N");
+                model.QuickQuery = Str.ConvertPinYin(model.ItemName).ToUpper();
+                model.SimpleSpelling = Str.PinYin(model.ItemName);
+                model.DeleteMark = 0;
+                model.CreateTime = DateTime.Now;
+                var res = await _dictItemService.Add(model);
+                if (res > 0)
+                {
+                    jsonResult.status = "1";
+                    jsonResult.msg = "新增信息成功";
+                }
+                else
+                {
+                    jsonResult.status = "0";
+                    jsonResult.msg = "新增信息失败";
+                }
+            }
+            else
+            {
+                //var currentuser = await _sysUserService.QueryById(key);
+                //currentuser.UpdateTime = DateTime.Now;
+                //currentuser.UserName = model.UserName;
+                //currentuser.RealName = model.RealName;
+                //currentuser.Age = model.Age;
+                //currentuser.Email = model.Email;
+                //currentuser.Address = model.Address;
+                //currentuser.Remark = model.Remark;
+                //var res = await _sysUserService.Update(currentuser);
+                //if (res)
+                //{
+                //    jsonResult.status = "1";
+                //    jsonResult.msg = "编辑信息成功";
+                //}
+                //else
+                //{
+                //    jsonResult.status = "0";
+                //    jsonResult.msg = "编辑信息失败";
+                //}
+            }
+            return Json(jsonResult);
         }
 
 

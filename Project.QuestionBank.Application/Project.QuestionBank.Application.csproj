@@ -302,6 +302,7 @@
     <Content Include="Content\scripts\bodyTab.js" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\dict\index.js" />
+    <Content Include="Content\scripts\dict\itemform.js" />
     <Content Include="Content\scripts\index.js" />
     <Content Include="Content\scripts\user\form.js" />
     <Content Include="Content\scripts\user\index.js" />
@@ -850,6 +851,7 @@
     <Content Include="Areas\System\Views\Dict\Index.cshtml" />
     <Content Include="Content\ztree\css\awesomeStyle\awesome.less" />
     <Content Include="Content\ztree\css\awesomeStyle\fa.less" />
+    <Content Include="Areas\System\Views\Dict\ItemForm.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
