@@ -1,14 +1,18 @@
-﻿layui.use(['form', 'layer', 'table', 'laytpl'],
+﻿var form,layer,laytpl,table;
+var typeId;
+layui.use(['form', 'layer', 'table', 'laytpl'],
     function () {
-        var form = layui.form,
+        form = layui.form,
             layer = parent.layer === undefined ? layui.layer : top.layer,
             laytpl = layui.laytpl,
             table = layui.table;
 
+        typeId = $('#dtypeid').val();
+
         table.render({
             elem: '#dictlist',
             id: "dictlist",
-            url: '/user/users',
+            url: '/system/dict/itembytype',
             height: 'full-185',
             cellMinWidth: 80,
             limit: 15,
@@ -20,6 +24,7 @@
                 first: false, //不显示首页
                 last: false //不显示尾页
             },
+            where: { typeId: typeId },
             request: {
                 pageName: 'page', //页码的参数名称，默认：page
                 limitName: 'size' //每页数据量的参数名，默认：limit
@@ -104,4 +109,12 @@ function zTreeOnClick(event, treeId, treeNode) {
     $('#dtypeid').val(treeNode.DictId);
     $('#dtypename').text(treeNode.DictName);
     //设置表格显示及标题提示 加载表格数据
+    table.reload("dictlist", {
+        page: {
+            curr: 1 //重新从第 1 页开始
+        },
+        where: {
+            typeId: treeNode.DictId //字典类型
+        }
+    });
 }
